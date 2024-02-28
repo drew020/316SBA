@@ -6,6 +6,25 @@ const topMenuEl = document.getElementById("top-menu");
 const subMenuEl = document.getElementById("sub-menu");
 const topMenuLinks = [];
 
+const c_screen = window.screen;
+const c_body = window.document.body;
+
+const imageArrItems = [];
+
+//#region Status Menu
+const statusMenu = window.document.createElement();
+//#endregion Statu Menu
+//#region Dialogue literals
+const dialogueArrText = [];
+const dialogueArrTag = [];
+
+dialogueArr[0] = "What is your name?";
+dialogueArr[1] = "A magical item swells with energy in your hands. ";
+dialogueArr[2] = "Distribute your attributes.";
+dialogueArr[3] =
+  "In the heart of an ancient yet bustling city of Arcanum, where magic flowed like a hidden river, lived an eccentric alchemist. their workshop was a cluttered haven of bubbling flasks dusty tomes, and peculiar artifacts. But their most prized possession sat atop a wooden pedestal—an intricately etched glass jar. They believed that within this jar lay the essence of forgotten realms—a microcosm of existence. it is called the “Dungeon Jar,” and its secrets whispered to her in dreams.";
+//#endregion Dialogue
+
 // Java created elements
 const h1 = document.createElement("h1");
 
@@ -105,7 +124,7 @@ function rLab3() {
     document.documentElement
   ).getPropertyValue("--sub-menu-bg");
 
-  subMenuEl.setAttribute("class", "flex-around");
+  //subMenuEl.setAttribute("class", "flex-around");
 
   //   Set the CSS position property of subMenuEl to the value of absolute.
   subMenuEl.style.position = "absolute";

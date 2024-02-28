@@ -100,12 +100,12 @@ section {
   border: 1px solid white;
   display: flex;
 }
-div {
+/* div {
 }
 table {
 }
 span {
-}
+} */
 button {
   padding: 1%;
   margin: 2%;
@@ -124,9 +124,10 @@ img {
 }
 p {
   text-align: center;
+  box-shadow: none;
 }
-strong #sec1_titlebar {
-  height: 5vh;
+strong {
+  box-shadow: none;
 }
 #sec2_imageboard {
   border: 1px solid;
@@ -159,11 +160,11 @@ strong #sec1_titlebar {
   height: 80%;
   aspect-ratio: 1/1;
 }
-#mc {
+/* #mc {
 }
 
 #npc {
-}
+} */
 #sec3_dialoguebox {
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
@@ -187,10 +188,17 @@ strong #sec1_titlebar {
   box-shadow: none;
 }
 .sec3_dialoguebutton {
-  display: inline-block;
+  display: inline-flex;
+  flex: 0.25;
   max-width: 300px;
   background-color: rgba(0, 0, 0, 0);
   background-image: url(/316sba/src/image/buttons1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sec3_dialoguebutton * :hover {
+  background-image: url(/316sba/src/image/buttons2.png);
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -202,21 +210,12 @@ strong #sec1_titlebar {
   align-content: space-around;
   justify-content: space-around;
   box-shadow: none;
-  position: relative;
 }
 
 .sec3_buttoncolumn {
   display: flex;
   align-content: space-around;
   justify-content: space-around;
-  position: relative;
-  top: -25%;
-}
-
-.sec3_dialoguebutton :hover {
-  background-image: url(/316sba/src/image/buttons2.png);
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 /* ------------------------------------------------------------------------- */
