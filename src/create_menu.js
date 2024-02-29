@@ -35,72 +35,6 @@ const topMenuEl = document.getElementById("top-menu");
 const subMenuEl = document.getElementById("sub-menu");
 const topMenuLinks = [];
 
-//submenu links based on menulink child index
-
-// Java created elements
-const h1 = document.createElement("h1");
-
-/* alab menulink array
-// array for menu items
-const menuLinks = [
-  { text: "about", href: "/about" },
-
-  { text: "catalog", href: "/catalog" },
-
-  { text: "orders", href: "/orders" },
-
-  { text: "account", href: "/account" },
-]; */
-
-//rlab menulink array
-// const menuLinks = [
-//   { text: "about", href: "/about" },
-//   {
-//     text: "catalog",
-//     href: "#",
-//     subLinks: [
-//       { text: "all", href: "/catalog/all" },
-//       { text: "top selling", href: "/catalog/top" },
-//       { text: "search", href: "/catalog/search" },
-//     ],
-//   },
-//   {
-//     text: "orders",
-//     href: "#",
-//     subLinks: [
-//       { text: "new", href: "/orders/new" },
-//       { text: "pending", href: "/orders/pending" },
-//       { text: "history", href: "/orders/history" },
-//     ],
-//   },
-//   {
-//     text: "account",
-//     href: "#",
-//     subLinks: [
-//       { text: "profile", href: "/account/profile" },
-//       { text: "sign out", href: "/account/signout" },
-//     ],
-//   },
-// ];
-
-function aLab1() {
-  // style is the attribute, background color is the property of style attribute
-  // set background color to value
-  mainEL.style.backgroundColor = getComputedStyle(
-    // get document root because the variable we seek is
-    //declared and initialized there in css file.
-    document.documentElement
-    // gets css varible, "--main-bg", value from :root selector in css
-  ).getPropertyValue("--main-bg");
-  //get document.body through stored reference variable mainEL,
-  //create a child element within it; a h1. Get the newly made
-  //child(h1) and insert a text node with "DOM Manipulation" value inside.
-  mainEL.appendChild(h1);
-  h1.textContent = "DOM Manipulation";
-  // get mainEL again to add class to body element in html so it may inherit its CSS properties.
-  mainEL.setAttribute("class", "flex-ctr");
-}
-
 function aLab2() {
   // set height to 100%.
   topMenuEl.style.height = "100%";
@@ -111,24 +45,6 @@ function aLab2() {
   // add class
   topMenuEl.setAttribute("class", "flex-around");
 }
-
-/* function alab3() {
-  // iterate over menuLinks array.
-  for (let i = 0; i < menuLinks.length; i++) {
-    // created element hyperling element
-    const menuLinkEl = document.createElement("a");
-
-    // edit hyperlink text
-    menuLinkEl.textContent = menuLinks[i].text;
-
-    // adds hyperling reference to a element
-    menuLinkEl.setAttribute("href", menuLinks[i].href);
-
-    // adds the generated a element to menu
-    topMenuEl.appendChild(menuLinkEl);
-  }
-}
- */
 
 function rLab3() {
   //set height
@@ -166,7 +82,8 @@ function rLab4() {
 
 function rLab5() {
   // Add click event listener to the parent
-  topMenuEl.addEventListener("click", function (event) {
+  //Equal the same thing on line below. "topMenuEl.addEventListener("click", function (event) {"
+  topMenuEl.addEventListener("click",(event)  =>{
     // Prevent default behavior
     event.preventDefault();
     // Check if the clicked element is an <a> element
@@ -250,7 +167,7 @@ function rLab5() {
     }
     //debug onclicked link
     console.log("Clicked link content:", event.target.textContent);
-  });
+  },);
 }
 function populatesubmenu(index, num) {
   for (let i = 0; i < num; i++) {
@@ -269,7 +186,6 @@ function deletechildrenEl() {
     subMenuEl.removeChild(subMenuEl.firstChild);
   }
 }
-aLab1();
 aLab2();
 //alab3); Deprecated
 rLab3();

@@ -19,61 +19,42 @@ a_Attribute_Stored[2] = a_Attribute_Element[2];
 a_Attribute_Stored[3] = a_Attribute_Element[3];
 
 // loop through the attribut array to add eventlisterner to each attribute
-for(let i = 0; i > a_Attribute_Element.length;i++)
-{
-  a_Attribute_Element[i].addEventListener('input', stepeEventInput);
-  console.log(`${a_Attribute_Element[i].name} stepEventinput listening`)
-  resetAttributePoints();
+function addEvents() {
+  for (let i = 0; i > a_Attribute_Element.length; i++) {
+    a_Attribute_Element[i].addEventListener('input', stepeEventInput);
+    console.log(`${a_Attribute_Element[i]} stepEventinput listening`)
+
+    resetAttributePoints();
+  }
 }
 
-function stepeEventInput(attribute) {
-let l_index = 0;
+addEvents();
 
+function stepeEventInput(event) {
+  let l_index = 0;
+event.preventDefault();
   // Which attribute index is it?
-  for(let i = 0; )
+  for (let i = 0; i > a_Attribute_Element.length; i++) {
+    if (event.target === a_Attribute_Element[i]) {
+      l_index = i;
+    }
+    console.log(`Detected ${a_Attribute_Element[i]} change`);
+  }
+
   //check if html is in inital state.
-  if (f_point.value == 40 && attribute.target.value == 0) {
-    f_point.value = f_point.value - (attribute.target.value - f_strength_stored);
+  if (f_point.value == 40 && a_Attribute_Stored[l_index] == 0) {
+    f_point.value = f_point.value - (event.target.value - a_Attribute_Stored[l_index]);
   }
   else
     if (f_point.value < 40 && f_point.value > 0) {
-      f_point.value = f_point.value - (f_strength.value - f_strength_stored);
+      f_point.value = f_point.value - (event.target.value - a_Attribute_Stored[l_index]);
     }
     else {
-      //attribute = 
-  }
-  // if (f_point.value - f_strength.value > 0) {
-  //   f_point.value = f_point.value - (f_strength.value - f_strength_stored);
-  //   console.log(f_strength_stored);
-  // }
-  // else {
-  //   f_strength.value = f_strength_stored;
-  // }
+      event.target.value = a_Attribute_Stored[l_index];
+    }
 
-  f_strength_stored = f_strength.value;
-  console.log(`input event on ${event.type}`)
-}
-function stepeEventwheel(event) {
-
-  if (event.deltaY > 0) {
-    // Decrease value
-    this.stepDown();
-  } else {
-    // Increase value
-    this.stepUp();
-  }
-
-  // Prevent default scrolling behavior
-  event.preventDefault();
-  console.log(`wheel event on ${event.type}`)
-
-};
-
-function stepUp() {
-  console.log("stepUp");
-}
-function stepDown() {
-  console.log("stepDown");
+  a_Attribute_Stored[l_index] = event.target.value;
+  //console.log(`input event on ${event.target}`)
 }
 
 function validateForm() {
@@ -107,16 +88,19 @@ function updateAttributePoints() {
 
 function resetAttributePoints() {
   f_point.value = 40;
+  f_point_stored = 40;
 
-  f_strength.value = 0;
-  f_strength_stored = 0;
+  a_Attribute_Element[0].value = 0;
+  a_Attribute_Stored[0] = 0;
 
-  f_intelligence.value = 0;
-  f_intelligence_stored = 0;
+  a_Attribute_Element[1].value = 0;
+  a_Attribute_Stored[1] = 0;
 
-  f_wisdom.value = 0;
-  f_wisdom_stored;
+  a_Attribute_Element[2].value = 0;
+  a_Attribute_Stored[2] = 0;
 
-  f_agility.value = 0;
-  f_agility_stored = 0
+  a_Attribute_Element[3].value = 0;
+  a_Attribute_Stored[3] = 0;
+
+  console.log("Attribute points Reset")
 }
