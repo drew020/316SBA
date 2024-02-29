@@ -20,7 +20,7 @@ a_Attribute_Stored[3] = a_Attribute_Element[3];
 
 // loop through the attribut array to add eventlisterner to each attribute
 function addEvents() {
-  for (let i = 0; i > a_Attribute_Element.length; i++) {
+  for (let i = 0; i < a_Attribute_Element.length; i++) {
     a_Attribute_Element[i].addEventListener('input', stepeEventInput);
     console.log(`${a_Attribute_Element[i]} stepEventinput listening`)
 
