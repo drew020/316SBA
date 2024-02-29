@@ -1,10 +1,76 @@
 // reference/cached html elements
-const mainEL = document.querySelector("main");
-const topMenuEl = document.getElementById("top-menu");
-const subMenuEl = document.getElementById("sub-menu");
-const topMenuLinks = [];
 
 
+
+    const f_name = document.forms["myForm"]["fname"];
+    const f_sex = document.forms["myForm"]["fsex"];
+    const f_class = document.forms["myForm"]["fclass"];
+    const f_element = document.forms["myForm"]["felement"];
+    const f_point = document.forms["myForm"]["fpoint"];
+    const f_strength = document.forms["myForm"]["fstrength"];
+    const f_intelligence = document.forms["myForm"]["fintelligence"];
+    const f_agility = document.forms["myForm"]["fagility"];
+    const f_wisdom = document.forms["myForm"]["fwisdom"];
+
+    let f_point_stored = document.forms["myForm"]["fpoint"].value;
+    let f_strength_stored = document.forms["myForm"]["fstrength"].value;
+    let f_intelligence_stored = document.forms["myForm"]["fintelligence"].value;
+    let f_agility_stored = document.forms["myForm"]["fagility"].value;
+    let f_wisdom_stored = document.forms["myForm"]["fwisdom"].value;
+  // Add event listener for increment button
+ //f_strength.addEventListener('wheel',  stepeEventwheel, false);
+ //f_strength.addEventListener('input',  stepeEventclick);
+
+f_strength.addEventListener('change',  (event) =>{
+
+ if(f_point.value > 0){
+  if(f_point.value - f_strength.value > 0){
+    f_point.value = f_point.value - (f_strength.value - f_strength_stored);
+    f_strength_stored = f_strength.value;
+    console.log(f_strength_stored);
+  }
+  else{
+  }
+    
+  }
+  else{
+    f_strength.value = 1;
+  }
+
+  console.log(`input event on ${event.type} 2`)
+
+},false);
+
+
+
+
+
+  function stepeEventclick(event) {
+        event.preventDefault();
+    console.log(`click event on ${event.type.myForm.value} `)
+  }
+  function stepeEventwheel(event){
+
+    if (event.deltaY > 0) {
+      // Decrease value
+      this.stepDown();
+    } else {
+      // Increase value
+      this.stepUp();
+    }
+    
+    // Prevent default scrolling behavior
+    event.preventDefault();
+    console.log(`wheel event on ${event.type}`)
+
+  };
+
+  function stepUp(){
+    console.log("stepUp");
+  }
+  function stepDown(){
+    console.log("stepDown");
+  }
 //#region Dialogue literals
 /* const dialogueArrText = [];
 const dialogueArrTag = [];
@@ -17,205 +83,56 @@ dialogueArr[3] =
 //#endregion Dialogue
 
 // Java created elements
-const h1 = document.createElement("h1");
 
 //#region Menu stuff
 // Menu links posed as a easily editable object to be generated via a loop.
-const menuLinks = [
-  { text: "HOME", href: "/HOME" },
-  {
-    text: "GAMES",
-    href: "#",
-    subLinks: [
-      { text: "Labyrinth of the Alchemist", href: "/games/textgame" },
-      { text: "Errant Knight Online", href: "/games/ek_online" },
-    ],
-  },
-  {
-    text: "NEWS",
-    href: "#",
-    subLinks: [
-      { text: "Updates", href: "/news/updates" },
-      { text: "Releases", href: "/news/release" },
-      { text: "CS Studio", href: "/news/csstudios" },
-    ],
-  },
-  {
-    text: "ACCOUNT",
-    href: "#",
-    subLinks: [
-      { text: "profile", href: "/account/profile" },
-      { text: "sign out", href: "/account/signout" },
-    ],
-  },
-];
 
-function aLab2() {
-  // set background color to value in css file a variable in the :root
-  topMenuEl.style.backgroundColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue("--top-menu-bg");
-}
 
-function rLab3() {
-  //set height
-  subMenuEl.style.height = "100%";
 
-  //set submenu bg to css stored submenu bg color
-  subMenuEl.style.backgroundColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue("--sub-menu-bg");
 
-  //subMenuEl.setAttribute("class", "flex-around");
-
-  //   Set the CSS position property of subMenuEl to the value of absolute.
-  subMenuEl.style.position = "absolute";
-
-  // Set the CSS top property of subMenuEl to the value of 0.
-  subMenuEl.style.top = 0;
-}
-
-function rLab4() {
-  // iterate over menuLinks array.
-  for (let i = 0; i < menuLinks.length; i++) {
-    // created element hyperling element
-    const menuLinkEl = document.createElement("a");
-    // edit hyperlink text
-    menuLinkEl.textContent = menuLinks[i].text;
-    // adds hyperling reference to a element
-    menuLinkEl.setAttribute("href", menuLinks[i].href);
-    // adds the generated a element to menu
-    topMenuEl.appendChild(menuLinkEl);
-    // stores a cache reference topmenulinks array
-    topMenuLinks.push(topMenuEl.childNodes[i]);
-  }
-}
-
-function rLab5() {
-  // Add click event listener to the parent
-  topMenuEl.addEventListener("click", function (event) {
-    // Prevent default behavior
-    event.preventDefault();
-    // Check if the clicked element is an <a> element
-    if (event.target.tagName === "A") {
-      const l_claas = event.target.classList;
-      const l_active = document.getElementsByClassName("active");
-      if (
-        event.target.textContent != "about" &&
-        l_claas.length == 0 &&
-        l_active.length == 0
-      ) {
-        deletechildrenEl();
-
-        //populates submenulink
-        subMenuEl.style.top = "100%";
-
-        let j;
-        let n;
-        if (event.target.textContent == "GAMES") {
-          j = 1;
-          n = 2;
-          populatesubmenu(j, n);
-        } else if (event.target.textContent == "NEWS") {
-          j = 2;
-          n = 3;
-          populatesubmenu(j, n);
-        } else if (event.target.textContent == "ACCOUNT") {
-          j = 3;
-          n = 2;
-          populatesubmenu(j, n);
-        }
-
-        //add active class to clicked link
-        event.target.setAttribute("class", "active");
-      } else if (
-        event.target.textContent != "HOME" &&
-        l_claas.length == 0 &&
-        l_active.length > 0
-      ) {
-        deletechildrenEl();
-
-        let j;
-        let n;
-        if (event.target.textContent == "GAMES") {
-          j = 1;
-          n = 2;
-          populatesubmenu(j, n);
-        } else if (event.target.textContent == "NEWS") {
-          j = 2;
-          n = 3;
-          populatesubmenu(j, n);
-        } else if (event.target.textContent == "ACCOUNT") {
-          j = 3;
-          n = 2;
-          populatesubmenu(j, n);
-        }
-        //remvoe active class from all links
-        topMenuLinks.forEach(function (element) {
-          element.classList.remove("active");
-        });
-        // set active
-        event.target.setAttribute("class", "active");
-      } else {
-        //remvoe active class from all links
-        topMenuLinks.forEach(function (element) {
-          element.classList.remove("active");
-        });
-        // hide submenu
-        subMenuEl.style.top = "0%";
-      }
-    } else {
-      subMenuEl.style.top = "0%";
-
-      deletechildrenEl();
-
-      //remvoe active class from all links
-      topMenuLinks.forEach(function (element) {
-        element.classList.remove("active");
-      });
-      // hide submenu
-    }
-    //debug onclicked link
-    console.log("Clicked link content:", event.target.textContent);
-  });
-}
-function populatesubmenu(index, num) {
-  for (let i = 0; i < num; i++) {
-    // created element hyperling element
-    const menuLinkEl = document.createElement("a");
-    // edit hyperlink text
-    menuLinkEl.textContent = menuLinks[index].subLinks[i].text;
-    // adds hyperling reference to a element
-    menuLinkEl.setAttribute("href", menuLinks[index].subLinks[i].href);
-    // adds the generated a element to menu
-    subMenuEl.appendChild(menuLinkEl);
-  }
-}
-function deletechildrenEl() {
-  while (subMenuEl.firstChild) {
-    subMenuEl.removeChild(subMenuEl.firstChild);
-  }
-}
 //#endregion Menu stuff
 
 //#region Menu stuff
 
 function validateForm() {
-  let x = document.forms["myForm"]["fname"].value;
-  if (x == "") {
-    alert("Name must be filled out");
+
+  try {
+      if (f_name.value.length == 0 && f_name.value.length > 12) {
+    alert("Name must be filled out and less than 12 character");
     return false;
   }
-  else {
-    alert("Character Created!");
-    return true;
+
+  if ((f_strength.value + f_intelligence.value + f_agility.value + f_wisdom.value) != 40){
+    alert("Most use all 40 Attribute points");
+    return false;
   }
+  } catch (error) {
+    console.log("Validation failed.")
+  }
+
 }
+
+function updateAttributePoints(){
+
+  try {
+      f_point = 40 - (f_strength+f_intelligence+f_wisdom+f_agility);
+  } catch (error) {
+    console.log(" Can not updateAttributePoints")
+  }
+
+  return f_point;
+}
+
+function resetAttributePoints(){
+f_point.value = 36;
+f_strength.value = 1;
+f_intelligence.value = 1;
+f_wisdom.value = 1;
+f_agility.value = 1;
+}
+
+
 //#endregion Menu stuff
 
-aLab2();
-//alab3); Deprecated
-rLab3();
-rLab4();
-rLab5();
+
 // Extract sublinks

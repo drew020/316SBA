@@ -51,9 +51,9 @@
               </td>
             </tr>
             <tr>
-              <td>Attribute</td>
+              <td>Element</td>
               <td>
-                <select name="fattribute">
+                <select name="fElement">
                   <option value="fire">Fire</option>
                   <option value="female">Mage</option>
                   <option value="male">Scout</option>
@@ -68,44 +68,38 @@
         </div>
 
         <div style="display: inline-flex; flex: 0.5; width: 49%; height: 95%;">
-          <p style="border: 1px solid;">STATISTICS</p>
-          <table style="border: 1px solid; height: 100%;">
+          <p style="border: 1px solid;">ATTRIBUTE</p>
+          <table style="border: 1px solid; height: 80%;">
+            <div>
+               <p style="width: 30%;display:inline-flex;justify-content: center;">Attribute Points</p>
+               <input name="fpoint" class="sec3_dialoguebutton" style="background-size:auto; width: 30%;display:inline-flex;text-align: center;" type="number" value="36" readonly>
+              <button class="sec3_dialoguebutton"style="width: 30%;display:inline-flex;" type="button" onclick="resetAttributePoints()"><strong><p>RESET</p></strong></button>
+            </div>
             <tr>
               <td>Strength</td>
               <td>
-                <input type="number" name="fStrength" placeholder="10" min="0" max="99" />
+                <input type="number" name="fstrength" value="0" placeholder="10" min="0" max="99" />
               </td>
             </tr>
             <tr>
               <td>Intelligence</td>
               <td>
-                <input type="number" name="fStrength" placeholder="10" min="0" max="99" />
+                <input type="number" name="fintelligence" value="0" placeholder="10" min="0" max="99" />
               </td>
             </tr>
             <tr>
               <td>Agility</td>
               <td>
-                <input type="number" name="fStrength" placeholder="10" min="0" max="99" />
+                <input type="number" name="fagility" value="0" placeholder="10" min="0" max="99" />
               </td>
             </tr>
             <tr>
               <td>Wisdom</td>
               <td>
-                <input type="number" name="fStrength" placeholder="10" min="0" max="99" />
+                <input type="number" name="fwisdom" value="0" placeholder="1o" min="0" max="99" />
               </td>
             </tr>
-            <tr>
-              <td>Vitality</td>
-              <td>
-                <input type="number" name="fStrength" placeholder="10" min="0" max="99" />
-              </td>
-            </tr>
-            <tr>
-              <td>Will</td>
-              <td>
-                <input type="number" name="fStrength" placeholder="10" min="0" max="99" />
-              </td>
-            </tr>
+          
           </table>
         </div>
       </form>
@@ -149,7 +143,7 @@
                 <p>ACTION</p>
               </strong>
             </button>
-            <button class="sec3_dialoguebutton" type="submit" value="Submit" onclick="validateForm()">
+            <button class="sec3_dialoguebutton" type="button" value="Submit" onclick="validateForm()">
               <strong>
                 <p>NEXT</p>
               </strong>
@@ -160,7 +154,9 @@
     </section>
   </main>
   <footer hidden></footer>
+  <script src="/316SBA/src/create_menu.js"></script>
   <script src="/316SBA/src/script.js"></script>
+
 </body>
 
 </html>
