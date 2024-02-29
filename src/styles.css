@@ -232,8 +232,11 @@ nav a {
   text-decoration: none;
   color: white;
 }
+nav a.active {
+  background-color: var(--sub-menu-bg);
+  color: var(--main-bg);
+}
 
-/* -------------------------------------- */
 header,
 #top-menu {
   position: relative;
@@ -247,14 +250,25 @@ header,
 #top-menu a:hover {
   background-color: var(--sub-menu-bg);
 }
+
 #sub-menu {
+  width: 100%;
   z-index: 10;
   transition: top 0.5s ease-out;
 }
 #sub-menu a:hover {
   background-color: var(--top-menu-bg);
 }
-nav a.active {
-  background-color: var(--sub-menu-bg);
-  color: var(--main-bg);
+
+.flex-ctr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
