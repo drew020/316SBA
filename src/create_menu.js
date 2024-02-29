@@ -1,36 +1,32 @@
 const menuLinks = [
-    { text: "HOME", href: "/HOME" },
-    {
-      text: "GAMES",
-      href: "#",
-      subLinks: [
-        { text: "Labyrinth of the Alchemist", href: "/games/textgame" },
-        { text: "Errant Knight Online", href: "/games/ek_online" },
-      ],
-    },
-    {
-      text: "NEWS",
-      href: "#",
-      subLinks: [
-        { text: "Updates", href: "/news/updates" },
-        { text: "Releases", href: "/news/release" },
-        { text: "CS Studio", href: "/news/csstudios" },
-      ],
-    },
-    {
-      text: "ACCOUNT",
-      href: "#",
-      subLinks: [
-        { text: "profile", href: "/account/profile" },
-        { text: "sign out", href: "/account/signout" },
-      ],
-    },
-  ];
+  { text: "HOME", href: "/HOME" },
+  {
+    text: "GAMES",
+    href: "#",
+    subLinks: [
+      { text: "Alchemist's Labyrinth", href: "/games/textgame" },
+      { text: "Errant Knight Online", href: "/games/ek_online" },
+    ],
+  },
+  {
+    text: "NEWS",
+    href: "#",
+    subLinks: [
+      { text: "Updates", href: "/news/updates" },
+      { text: "Releases", href: "/news/release" },
+      { text: "CS Studio", href: "/news/csstudios" },
+    ],
+  },
+  {
+    text: "ACCOUNT",
+    href: "#",
+    subLinks: [
+      { text: "profile", href: "/account/profile" },
+      { text: "sign out", href: "/account/signout" },
+    ],
+  },
+];
 
-  //import "/src/styles.css";
-
-// reference/cached html elements
-const mainEL = document.querySelector("main");
 const topMenuEl = document.getElementById("top-menu");
 const subMenuEl = document.getElementById("sub-menu");
 const topMenuLinks = [];
@@ -82,17 +78,16 @@ function rLab4() {
 
 function rLab5() {
   // Add click event listener to the parent
-  //Equal the same thing on line below. "topMenuEl.addEventListener("click", function (event) {"
-  topMenuEl.addEventListener("click",(event)  =>{
+  topMenuEl.addEventListener("click", function (event) {
     // Prevent default behavior
     event.preventDefault();
     // Check if the clicked element is an <a> element
     if (event.target.tagName === "A") {
-      const l_claas = event.target.classList;
+      const l_class = event.target.classList;
       const l_active = document.getElementsByClassName("active");
       if (
-        event.target.textContent != "about" &&
-        l_claas.length == 0 &&
+        event.target.textContent != "HOME" &&
+        l_class.length == 0 &&
         l_active.length == 0
       ) {
         deletechildrenEl();
@@ -102,15 +97,15 @@ function rLab5() {
 
         let j;
         let n;
-        if (event.target.textContent == "catalog") {
+        if (event.target.textContent == "GAMES") {
           j = 1;
-          n = 3;
+          n = 2;
           populatesubmenu(j, n);
-        } else if (event.target.textContent == "orders") {
+        } else if (event.target.textContent == "NEWS") {
           j = 2;
           n = 3;
           populatesubmenu(j, n);
-        } else if (event.target.textContent == "account") {
+        } else if (event.target.textContent == "ACCOUNT") {
           j = 3;
           n = 2;
           populatesubmenu(j, n);
@@ -119,23 +114,23 @@ function rLab5() {
         //add active class to clicked link
         event.target.setAttribute("class", "active");
       } else if (
-        event.target.textContent != "about" &&
-        l_claas.length == 0 &&
+        event.target.textContent != "HOME" &&
+        l_class.length == 0 &&
         l_active.length > 0
       ) {
         deletechildrenEl();
 
         let j;
         let n;
-        if (event.target.textContent == "catalog") {
+        if (event.target.textContent == "GAMES") {
           j = 1;
           n = 3;
           populatesubmenu(j, n);
-        } else if (event.target.textContent == "orders") {
+        } else if (event.target.textContent == "NEWS") {
           j = 2;
           n = 3;
           populatesubmenu(j, n);
-        } else if (event.target.textContent == "account") {
+        } else if (event.target.textContent == "ACCOUNT") {
           j = 3;
           n = 2;
           populatesubmenu(j, n);
@@ -167,7 +162,7 @@ function rLab5() {
     }
     //debug onclicked link
     console.log("Clicked link content:", event.target.textContent);
-  },);
+  });
 }
 function populatesubmenu(index, num) {
   for (let i = 0; i < num; i++) {
@@ -186,9 +181,8 @@ function deletechildrenEl() {
     subMenuEl.removeChild(subMenuEl.firstChild);
   }
 }
+
 aLab2();
-//alab3); Deprecated
 rLab3();
 rLab4();
 rLab5();
-// Extract sublinks

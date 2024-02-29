@@ -32,7 +32,7 @@ addEvents();
 
 function stepeEventInput(event) {
   let l_index = 0;
-event.preventDefault();
+  event.preventDefault();
   // Which attribute index is it?
   for (let i = 0; i > a_Attribute_Element.length; i++) {
     if (event.target === a_Attribute_Element[i]) {
@@ -42,34 +42,61 @@ event.preventDefault();
   }
 
   //check if html is in inital state.
-  if (f_point.value == 40 && a_Attribute_Stored[l_index] == 0) {
-    f_point.value = f_point.value - (event.target.value - a_Attribute_Stored[l_index]);
-  }
-  else
-    if (f_point.value < 40 && f_point.value > 0) {
-      f_point.value = f_point.value - (event.target.value - a_Attribute_Stored[l_index]);
-    }
-    else {
-      event.target.value = a_Attribute_Stored[l_index];
-    }
 
-  a_Attribute_Stored[l_index] = event.target.value;
+  //check if attribute points available.
+  if (f_point.value <= 40 && f_point.value > 0) {
+    //subtract new attribute value from current attribute points 
+    f_point.value = f_point.value - (event.target.value - a_Attribute_Stored[l_index]);
+    //save new attribute value
+    a_Attribute_Stored[l_index] = event.target.value;
+    return
+  }
+  else if (event.target.value == a_Attribute_Stored[l_index]) {
+    return;
+  }
+  else {
+    event.target.value = a_Attribute_Stored[l_index];
+    return
+  }
+
   //console.log(`input event on ${event.target}`)
 }
 
 function validateForm() {
 
   try {
+    let l_v;
+    let l_check = [];
+    let l_message = [];
+
+    i_check[0] = false;
+    l_message[0] = "Name must be filled out and less than 12 character";
+
+    i_check[1] = false;
+    l_message[1] = "Most use all 40 Attribute points";
+
     if (f_name.value.length == 0 && f_name.value.length > 12) {
-      alert("Name must be filled out and less than 12 character");
-      return false;
+      l_v = false;
+      l_check[0] = true;
     }
 
-    if ((f_strength.value + f_intelligence.value + f_agility.value + f_wisdom.value) != 40) {
-      alert("Most use all 40 Attribute points");
-      return false;
+    if ((a_Attribute_Element[0].value + a_Attribute_Element[1].value + a_Attribute_Element[2].value + a_Attribute_Element[3].value) != 40) {
+      l_v = false;
+      l_check[1] = true;
     }
+
+    if (l_v == false) {
+      for (let i = 0; i < l_message.length; i++) {
+        if (i_check[i]) {
+          alert(l_message[i]);
+        }
+      }
+    }
+
+
   } catch (error) {
+    alert("Validation failed.");
+
     console.log("Validation failed.")
   }
 
