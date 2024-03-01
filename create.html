@@ -69,48 +69,51 @@
 
         <div style="display: inline-flex; flex: 0.5; width: 49%; height: 95%;">
           <p style="border: 1px solid;">ATTRIBUTE</p>
-          <table style="border: 1px solid; height: 80%;">
-            <div>
-              <p style="width: 30%;display:inline-flex;justify-content: center;">Attribute Points</p>
-              <input name="fpoint" class="sec3_dialoguebutton"
-                style="background-size:auto; width: 30%;display:inline-flex;text-align: center;" type="number"
-                value="40" readonly>
-              <button class="sec3_dialoguebutton" style="width: 30%;display:inline-flex;" type="button"
-                onclick="resetAttributePoints()"><strong>
-                  <p>RESET</p>
-                </strong></button>
-            </div>
+          <div style=" background-color: rgb(22, 22, 22);">
+            <p style="width: 30%;display:inline-flex;justify-content: center;">Attribute Points</p>
+            <input name="fpoint" class="sec3_dialoguebutton"
+              style="background-size:auto; width: 30%;display:inline-flex;text-align: center;" type="number"
+              value="40" readonly>
+            <button class="sec3_dialoguebutton" style="width: 30%;display:inline-flex;" type="button"
+              onclick="resetAttributePoints()"><strong>
+                <p>RESET</p>
+              </strong></button>
+          </div>
+          <div style =" height:88%;">
+           <table style="height: 100%;">
             <tr>
               <td>Strength</td>
               <td>
-                <input type="number" name="fstrength" value="0" placeholder="10" min="0" max="99" />
+                <input type="number" name="fstrength" value=0 placeholder=10 min= 0 max= 99 />
               </td>
             </tr>
             <tr>
               <td>Intelligence</td>
               <td>
-                <input type="number" name="fintelligence" value="0" placeholder="10" min="0" max="99" />
+                <input type="number" name="fintelligence" value=0 placeholder=10 min= 0 max= 99 />
               </td>
             </tr>
             <tr>
               <td>Agility</td>
               <td>
-                <input type="number" name="fagility" value="0" placeholder="10" min="0" max="99" />
+                <input type="number" name="fagility" value=0 placeholder=10 min= 0 max= 99  />
               </td>
             </tr>
             <tr>
               <td>Wisdom</td>
               <td>
-                <input type="number" name="fwisdom" value="0" placeholder="1o" min="0" max="99" />
+                <input type="number" name="fwisdom" value=0 placeholder=10 min= 0 max= 99/>
               </td>
             </tr>
-          </table>
+          </table> 
+          </div>
+          
         </div>
       </form>
     </section>
     <section id="sec3_dialoguebox">
       <span class="dialogue_box">
-        <div style="display: flex;">
+        <div>
           <p style="display: none;" class="name_tag">
             <strong>CHARACTER CREATION</strong>
           </p>
@@ -123,7 +126,7 @@
                 <p>MENU</p>
               </strong>
             </button>
-            <button class="sec3_dialoguebutton">
+            <button class="sec3_dialoguebutton" onclick="sumAttribute()">
               <strong>
                 <p>SETTINGS</p>
               </strong>

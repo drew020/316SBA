@@ -13,15 +13,15 @@ a_Attribute_Element[2] = document.forms["myForm"]["fagility"];
 a_Attribute_Element[3] = document.forms["myForm"]["fwisdom"];
 
 const a_Attribute_Stored = [];
-a_Attribute_Stored[0] = a_Attribute_Element[0];
-a_Attribute_Stored[1] = a_Attribute_Element[1];
-a_Attribute_Stored[2] = a_Attribute_Element[2];
-a_Attribute_Stored[3] = a_Attribute_Element[3];
+a_Attribute_Stored[0] = a_Attribute_Element[0].value;
+a_Attribute_Stored[1] = a_Attribute_Element[1].value;
+a_Attribute_Stored[2] = a_Attribute_Element[2].value;
+a_Attribute_Stored[3] = a_Attribute_Element[3].value;
 
 // loop through the attribut array to add eventlisterner to each attribute
 function addEvents() {
   for (let i = 0; i < a_Attribute_Element.length; i++) {
-    a_Attribute_Element[i].addEventListener('input', stepeEventInput);
+    a_Attribute_Element[i].addEventListener('input', stepEventInput);
     console.log(`${a_Attribute_Element[i]} stepEventinput listening`)
 
     resetAttributePoints();
@@ -30,7 +30,7 @@ function addEvents() {
 
 addEvents();
 
-function stepeEventInput(event) {
+function stepEventInput(event) {
   let l_index = 0;
   event.preventDefault();
   // Which attribute index is it?
@@ -40,26 +40,14 @@ function stepeEventInput(event) {
     }
     console.log(`Detected ${a_Attribute_Element[i]} change`);
   }
-
-  //check if html is in inital state.
-
-  //check if attribute points available.
-  if (f_point.value <= 40 && f_point.value > 0) {
-    //subtract new attribute value from current attribute points 
-    f_point.value = f_point.value - (event.target.value - a_Attribute_Stored[l_index]);
-    //save new attribute value
-    a_Attribute_Stored[l_index] = event.target.value;
-    return
-  }
-  else if (event.target.value == a_Attribute_Stored[l_index]) {
-    return;
-  }
-  else {
-    event.target.value = a_Attribute_Stored[l_index];
-    return
+  if(f_point.value >= 0 && Number(sumAttribute()) <= 40 ){
+      f_point.value= 40 - sumAttribute();
   }
 
-  //console.log(`input event on ${event.target}`)
+    else if (f_point.value == 0) {
+          event.target.value --
+  }
+  console.log(`input event on ${event.target}`)
 }
 
 function validateForm() {
@@ -80,7 +68,7 @@ function validateForm() {
       l_check[0] = true;
     }
 
-    if ((a_Attribute_Element[0].value + a_Attribute_Element[1].value + a_Attribute_Element[2].value + a_Attribute_Element[3].value) != 40) {
+    if (sumAttribute() != 40) {
       l_v = false;
       l_check[1] = true;
     }
@@ -105,12 +93,20 @@ function validateForm() {
 function updateAttributePoints() {
 
   try {
-    f_point = 40 - (f_strength.value + f_intelligence.value + f_wisdom.value + f_agility.value);
+    f_point = 40 - sumAttribute();
   } catch (error) {
     console.log(" Can not updateAttributePoints")
   }
   console.log(`Attribut point value updated.`)
   return f_point;
+}
+
+//i got paranoid with Number()...i'll fix it later. just letting it sink in...hours wasted debugging
+function sumAttribute(){
+let r = Number(Number(a_Attribute_Element[0].value) + Number(a_Attribute_Element[1].value) + Number(a_Attribute_Element[2].value) + Number(a_Attribute_Element[3].value));
+  console.log(`Attribut point spent total = ${Number(r)}`);
+
+  return Number(r);
 }
 
 function resetAttributePoints() {
