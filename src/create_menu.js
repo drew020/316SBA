@@ -28,7 +28,11 @@ const menuLinks = [
 ];
 
 const topMenuEl = document.getElementById("top-menu");
-const subMenuEl = document.getElementById("sub-menu");
+//const subMenuEl = document.getElementById("sub-menu");
+
+//316SBA
+const subMenuEl = document.querySelectorAll("nav")[1];
+
 const topMenuLinks = [];
 
 function aLab2() {
