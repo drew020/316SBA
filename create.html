@@ -27,6 +27,12 @@
             <tr>
               <td>Name</td>
               <td>
+                <input type="button" value="Submit" onclick="validateForm()"/>
+              </td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>
                 <input type="text" name="fname" placeholder="" />
               </td>
             </tr>
@@ -150,7 +156,7 @@
                 <p>ACTION</p>
               </strong>
             </button>
-            <button class="sec3_dialoguebutton" type="button" value="Submit" onclick="validateForm()">
+            <button disabled style=" filter: saturate(0.0);" class="sec3_dialoguebutton" id="disabledNext" type="reset" onclick="location.href='/316SBA/prologue.html'">
               <strong>
                 <p>NEXT</p>
               </strong>

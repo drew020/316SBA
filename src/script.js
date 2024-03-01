@@ -4,6 +4,8 @@ const f_class = document.forms["myForm"]["fclass"];
 const f_element = document.forms["myForm"]["felement"];
 const f_point = document.forms["myForm"]["fpoint"];
 
+const f_disabledNext = document.getElementById("disabledNext");
+
 let f_point_stored = document.forms["myForm"]["fpoint"].value;
 
 const a_Attribute_Element = [];
@@ -79,9 +81,11 @@ function validateForm() {
       }
     }
   }
+  else {
+    f_disabledNext.style.filter = "saturate(" + 1 + ")";
+    f_disabledNext.removeAttribute('disabled');
 
-  if(l_v = false){
-    replaceLocation();
+    alert("Character is created, please click NEXT");
   }
 }
 
@@ -124,7 +128,7 @@ function resetAttributePoints() {
 }
 
 function replaceLocation() {
- 
+
   // Replace the current location
   // with new location
   let newloc = "/index.html";
