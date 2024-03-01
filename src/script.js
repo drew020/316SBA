@@ -40,54 +40,49 @@ function stepEventInput(event) {
     }
     console.log(`Detected ${a_Attribute_Element[i]} change`);
   }
-  if(f_point.value >= 0 && Number(sumAttribute()) <= 40 ){
-      f_point.value= 40 - sumAttribute();
+  if (f_point.value >= 0 && Number(sumAttribute()) <= 40) {
+    f_point.value = 40 - sumAttribute();
   }
 
-    else if (f_point.value == 0) {
-          event.target.value --
+  else if (f_point.value == 0) {
+    event.target.value--
   }
   console.log(`input event on ${event.target}`)
 }
 
 function validateForm() {
 
-  try {
-    let l_v;
-    let l_check = [];
-    let l_message = [];
+  let l_v = false;
+  const l_check = [];
+  const l_message = [];
 
-    i_check[0] = false;
-    l_message[0] = "Name must be filled out and less than 12 character";
+  l_check[0] = false;
+  l_message[0] = "Name must be filled out and less than 12 character";
 
-    i_check[1] = false;
-    l_message[1] = "Most use all 40 Attribute points";
+  l_check[1] = false;
+  l_message[1] = "Most use all 40 Attribute points";
 
-    if (f_name.value.length == 0 && f_name.value.length > 12) {
-      l_v = false;
-      l_check[0] = true;
-    }
-
-    if (sumAttribute() != 40) {
-      l_v = false;
-      l_check[1] = true;
-    }
-
-    if (l_v == false) {
-      for (let i = 0; i < l_message.length; i++) {
-        if (i_check[i]) {
-          alert(l_message[i]);
-        }
-      }
-    }
-
-
-  } catch (error) {
-    alert("Validation failed.");
-
-    console.log("Validation failed.")
+  if (f_name.value.length === 0 || f_name.value.length > 12) {
+    l_v = true;
+    l_check[0] = true;
   }
 
+  if (sumAttribute() != 40) {
+    l_v = true;
+    l_check[1] = true;
+  }
+
+  if (l_v == true) {
+    for (let i = 0; i < l_message.length; i++) {
+      if (l_check[i]) {
+        alert(l_message[i].toString());
+      }
+    }
+  }
+
+  if(l_v = false){
+    replaceLocation();
+  }
 }
 
 function updateAttributePoints() {
@@ -102,8 +97,8 @@ function updateAttributePoints() {
 }
 
 //i got paranoid with Number()...i'll fix it later. just letting it sink in...hours wasted debugging
-function sumAttribute(){
-let r = Number(Number(a_Attribute_Element[0].value) + Number(a_Attribute_Element[1].value) + Number(a_Attribute_Element[2].value) + Number(a_Attribute_Element[3].value));
+function sumAttribute() {
+  let r = Number(Number(a_Attribute_Element[0].value) + Number(a_Attribute_Element[1].value) + Number(a_Attribute_Element[2].value) + Number(a_Attribute_Element[3].value));
   console.log(`Attribut point spent total = ${Number(r)}`);
 
   return Number(r);
@@ -126,4 +121,12 @@ function resetAttributePoints() {
   a_Attribute_Stored[3] = 0;
 
   console.log("Attribute points Reset")
+}
+
+function replaceLocation() {
+ 
+  // Replace the current location
+  // with new location
+  let newloc = "/index.html";
+  window.location.replace(newloc);
 }
